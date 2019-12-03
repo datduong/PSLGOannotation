@@ -1,4 +1,3 @@
-
 predicates:
   Classifier/1: closed
   Label/1: closed
