@@ -1,0 +1,2 @@
+// similar labels similar probability
+1.0: Subset(L1,L2) & ClassifierPredict(U,L1) >> ClassifierPredict(U,L2) ^2

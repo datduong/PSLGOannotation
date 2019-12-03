@@ -1,0 +1,19 @@
+
+predicates:
+  ClassifierPredict/3: open
+  Classifier/1: closed
+  Label/1: closed
+  Subset/2: closed
+
+
+observations:
+  ClassifierPredict: ClassifierPredict.txt
+  Classifier: Classifier.txt
+  Label: Label.txt
+  Subset: Subset.txt
+
+targets:
+  Rating: Rating_target.txt
+
+truth:
+  Rating: Rating_truth.txt
