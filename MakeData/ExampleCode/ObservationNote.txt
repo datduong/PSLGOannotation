@@ -1,0 +1,4 @@
+
+
+Can't do unseen labels? In example data, all the labels are observed, not all input has complete set of labels. 
+  -- We can do it, but we need to put all unobserved into the predicted file

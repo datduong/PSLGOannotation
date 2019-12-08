@@ -5,7 +5,8 @@ predicates:
   ErrorLink/3: closed
   ClassifierLink/2: closed
   SimilarLabel/2: closed
-  ClassifierPredict/2: open
+  Sample/2: closed
+  ClassifierPredict/3: open
 
 observations:
   Classifier: Classifier.txt
@@ -14,6 +15,7 @@ observations:
   ErrorLink: ErrorLink.txt
   ClassifierLink: ClassifierLink.txt
   SimilarLabel: SimilarLabel.txt
+  Sample: Sample.txt
   ClassifierPredict: ClassifierPredict.txt
 
 targets:
