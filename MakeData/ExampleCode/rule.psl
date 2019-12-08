@@ -1,4 +1,4 @@
-// similar labels similar probability
+// COMMENT similar labels similar probability
 1.0: SimilarLabel(L1,L2) & ClassifierPredict(U,P1,L1) >> ClassifierPredict(U,P1,L2) ^2
 1.0: SimilarLabel(L1,L2) & ClassifierPredict(U,P1,L2) >> ClassifierPredict(U,P1,L1) ^2
 

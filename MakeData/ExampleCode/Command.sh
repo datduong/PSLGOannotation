@@ -13,7 +13,7 @@ sort -V scratch_testing/CLASSIFIERPREDICT.txt
 
 # java -jar psl-cli-2.1.0.jar --learn --model preference-prediction.psl --data preference-prediction-learn.data
 
-#### Example
+#### EXAMPLE
 
 3 and 4 similar
 
@@ -25,11 +25,11 @@ C1 P2 3 0.6 --> C1 P2 4 medium high
 C2 P2 3 0.1 --> C2 P2 4 low
   --> T P2 4 should be medium high + low (should be less than T P1 4)
 
-'T'     'P1'    '2'     0.5159568190574646
+'T'     'P1'    '2'     0.5159568190574646 -->> looks like simple average
 'T'     'P1'    '3'     0.42127561569213867
-'T'     'P1'    '4'     0.7367483973503113 --> higher than T P2
+'T'     'P1'    '4'     0.7367483973503113 --> higher than T P2 #EXAMPLE
 'T'     'P1'    '5'     0.5080637335777283
 'T'     'P2'    '2'     0.7106379866600037
 'T'     'P2'    '3'     0.36329710483551025
-'T'     'P2'    '4'     0.5493872761726379 --> lower than T P1
+'T'     'P2'    '4'     0.5493872761726379 --> lower than T P1 #EXAMPLE
 'T'     'P2'    '5'     0.368010014295578
