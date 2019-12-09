@@ -4,6 +4,9 @@ import numpy as np
 import pandas as pd
 from tqdm import tqdm
 
+import networkx
+import obonet
+
 def run (CLASSIFIER_NAME,WORKDIR,OUTPUT_PATH,LABEL_SEEN,PROTEIN_NAME,MODEL_OUTPUT,ONTO) :
 
   # need format Classifier Protein Label
