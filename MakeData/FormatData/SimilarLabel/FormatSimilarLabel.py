@@ -49,11 +49,12 @@ def run (WORKDIR,OUTPUT_PATH,LABEL_SEEN,LABEL_COMPLETE,LABEL_VECTOR,ONTO) :
   for index1, value1 in enumerate(names_in_label_vec):
     label_vec_matrix[index1] = label_vec[value1]
 
-  sim = pairwise.cosine_similarity(label_vec_matrix) ## possible ??
+  sim = pairwise.cosine_similarity(label_vec_matrix) ## possible ?? ... quite fast actually
 
   # for ONTO in ['cellular_component','molecular_function','biological_process']:
 
   OUTPUT_PATH2 = os.path.join(OUTPUT_PATH, ONTO)
+  print ('output path will be {}'.format(OUTPUT_PATH2))
   if not os.path.exists(OUTPUT_PATH2):
     os.makedirs (OUTPUT_PATH2)
 
@@ -86,8 +87,8 @@ def run (WORKDIR,OUTPUT_PATH,LABEL_SEEN,LABEL_COMPLETE,LABEL_VECTOR,ONTO) :
   fout.close()
 
 
-
-if len(sys.argv)<1: ## run script
+## COMMENT run script
+if len(sys.argv)<1: 
 	print("Usage: \n")
 	sys.exit(1)
 else:

@@ -4,42 +4,55 @@ import numpy as np
 import pandas as pd
 from tqdm import tqdm
 
-WORK_DIR = '/u/scratch/d/datduong/deepgo/dataExpandGoSet/'
-os.chdir("/u/scratch/d/datduong/deepgo/data/")
-OUTPUT_PATH = 'PSLdata'
-if not os.path.exists(OUTPUT_PATH):
-  os.mkdir(OUTPUT_PATH)
+def run (CLASSIFIER_NAME,WORKDIR,OUTPUT_PATH,LABEL_SEEN,PROTEIN_NAME,MODEL_OUTPUT,ONTO) :
 
-os.chdir(OUTPUT_PATH)
-# need format Classifier Protein Label
-# we predict 3 ontology separately, so we have to concat them
+  # need format Classifier Protein Label
+  # we predict 3 ontology separately, so we have to concat them
 
-ClassifierName = 'BERT12'
+  os.chdir(WORKDIR)
+  # OUTPUT_PATH = 'PSLdata'
+  if not os.path.exists(OUTPUT_PATH):
+    os.mkdir(OUTPUT_PATH)
 
-# onto = 'mf'
-for onto in ['mf','cc','bp'] :
+  if ONTO is not 'none':
+    graph = obonet.read_obo('go.obo')
 
-  ## COMMENT we save all models in the folder @data
-  prediction = pickle.load(open("/u/scratch/d/datduong/deepgo/data/BertNotFtAARawSeqGO/"+onto+"/fold_1/2embPpiAnnotE256H1L12I512Set0/ProtAnnotTypeLarge/YesPpiYesTypeScaleFreezeBert12Ep10e10Drop0.1/prediction_train_all_on_test.pickle","rb")) ## num_prot x num_label seen
+  if not os.path.exists(OUTPUT_PATH):
+    os.mkdir(OUTPUT_PATH)
 
-  ## COMMENT return a dict with true labels
-  prediction = prediction['prediction']
+  os.chdir(OUTPUT_PATH)
 
-  protein_names = pd.read_csv(WORK_DIR+"train/fold_1/ProtAnnotTypeTopoData/test-"+onto+"-input.tsv",sep="\t",header=None)
+  ## COMMENT load back saved prediction
+  prediction = pickle.load(open(MODEL_OUTPUT,"rb")) ## num_prot x num_label seen
+  prediction = prediction['prediction'] ## has 'true_label' too
+
+  ## COMMENT load in protein names
+  protein_names = pd.read_csv(PROTEIN_NAME,sep="\t",header=None)
   protein_names = list ( protein_names[0] ) ## do not sort protein name, leave as the same order seen in data
 
-  label_names_seen = pd.read_csv(WORK_DIR+"train/deepgo."+onto+".csv",sep="\t",header=None)
+  ## COMMENT load label we seen during training classifier
+  label_names_seen = pd.read_csv(LABEL_SEEN,sep="\t",header=None)
   label_names_seen = sorted (list(label_names_seen[0]))
+  if ONTO is not 'none':
+    label_names_seen = [ l for l in label_names_seen if graph.node[l]['namespace'] != ONTO ]
 
-  fout = open (ClassifierName+"-"+onto+".txt",'w')
+  ## COMMENT write out
+  fout = open ('ClassifierPredict.txt','w')
   for index1, protein1 in enumerate ( tqdm(protein_names) )  : ## num protein
-    this = "\n".join ( ClassifierName + "\t" + protein1 + "\t" + label_names_seen[index2] + "\t" + str( np.round(p,9)) for index2,p in enumerate( prediction[index1] ) )
+    this = "\n".join ( CLASSIFIER_NAME + "\t" + protein1 + "\t" + label_names_seen[index2] + "\t" + str( np.round(p,9)) for index2,p in enumerate( prediction[index1] ) )
     fout.write(this)
 
   #
   fout.close()
 
 
+## COMMENT run script
+if len(sys.argv)<1:
+	print("Usage: \n")
+	sys.exit(1)
+else:
+  # CLASSIFIER_NAME,WORKDIR,OUTPUT_PATH,LABEL_SEEN,PROTEIN_NAME,MODEL_OUTPUT,ONTO
+	run ( sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6], sys.argv[7])
 
 
 
