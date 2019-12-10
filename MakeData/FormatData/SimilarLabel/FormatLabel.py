@@ -35,8 +35,8 @@ def run (WORKDIR,OUTPUT_PATH,LABEL_SEEN,LABEL_COMPLETE,ONTO) :
 
   ## COMMENT filter by ontology ?
   if ONTO is not 'none':
-    label_names_seen = [ l for l in label_names_seen if graph.node[l]['namespace'] != ONTO ]
-    label_names_complete = [ l for l in label_names_complete if graph.node[l]['namespace'] != ONTO ]
+    label_names_seen = [ l for l in label_names_seen if graph.node[l]['namespace'] == ONTO ]
+    label_names_complete = [ l for l in label_names_complete if graph.node[l]['namespace'] == ONTO ]
 
 
   os.chdir(OUTPUT_PATH)
@@ -49,7 +49,8 @@ def run (WORKDIR,OUTPUT_PATH,LABEL_SEEN,LABEL_COMPLETE,ONTO) :
     # Find edges to parent terms
     for child, parent, key in graph.out_edges(value1, keys=True):
       if key == 'is_a':
-        fout.write(parent+"\t"+child+"\t1.0\n")
+        if parent not in ['GO:0008150','GO:0003674','GO:0005575']: ## don't need, by default we know root must be assigned. ??
+          fout.write(parent+"\t"+child+"\t1.0\n")
   fout.close()
 
   ## COMMENT write out which label we have seen, and not

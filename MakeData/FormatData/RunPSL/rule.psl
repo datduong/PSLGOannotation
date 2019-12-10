@@ -1,0 +1,19 @@
+// COMMENT similar labels similar probability
+1.0: SimilarLabel(L1,L2) & ClassifierPredict(U,P1,L1) >> ClassifierPredict(U,P1,L2) ^2
+1.0: SimilarLabel(L1,L2) & ClassifierPredict(U,P1,L2) >> ClassifierPredict(U,P1,L1) ^2
+
+// logic constraints
+// we want data in the format (ClassifierName GOLabel Probability)
+// also model the error e^d_j d=label j=classifier. if predictor is correct, then error is 0.
+1.0: ErrorLink(U,E,T) & ClassifierPredict(U,P1,L1) & ~ClassifierPredict(E,P1,L1) >> ClassifierPredict(T,P1,L1) ^2
+1.0: ErrorLink(U,E,T) & ~ClassifierPredict(U,P1,L1) & ~ClassifierPredict(E,P1,L1) >> ~ClassifierPredict(T,P1,L1) ^2
+1.0: ErrorLink(U,E,T) & ClassifierPredict(U,P1,L1) & ClassifierPredict(E,P1,L1) >> ~ClassifierPredict(T,P1,L1) ^2
+1.0: ErrorLink(U,E,T) & ~ClassifierPredict(U,P1,L1) & ClassifierPredict(E,P1,L1) >> ClassifierPredict(T,P1,L1) ^2
+1.0: ClassifierLink(U,T) & ~ClassifierPredict(U,P1,L1) >> ~ClassifierPredict(T,P1,L1) ^2
+1.0: ClassifierLink(U,T) & ClassifierPredict(U,P1,L1) >> ClassifierPredict(T,P1,L1) ^2
+
+
+// subsumption rule
+// L1 is larger than L2. Here, L1 is parent, L2 child node
+1.0: ErrorLink(U,E,T) & Subset(L1,L2) & ~ClassifierPredict(U,P1,L1) & ClassifierPredict(T,P1,L2) >> ClassifierPredict(E,P1,L1) ^2
+

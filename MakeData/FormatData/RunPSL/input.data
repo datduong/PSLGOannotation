@@ -1,0 +1,25 @@
+predicates:
+  Classifier/1: closed
+  Label/1: closed
+  Subset/2: closed
+  ErrorLink/3: closed
+  ClassifierLink/2: closed
+  SimilarLabel/2: closed
+  Sample/2: closed
+  ClassifierPredict/3: open
+
+observations:
+  Classifier: Classifier.txt
+  Label: Label.txt
+  Subset: Subset.txt
+  ErrorLink: ErrorLink.txt
+  ClassifierLink: ClassifierLink.txt
+  SimilarLabel: SimilarLabel.txt
+  Sample: Sample.txt
+  ClassifierPredict: ClassifierPredict.txt
+
+targets:
+  ClassifierPredict: Classifier_target.txt
+
+truth:
+  ClassifierPredict: Classifier_truth.txt
