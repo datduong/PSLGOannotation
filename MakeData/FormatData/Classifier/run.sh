@@ -38,6 +38,6 @@ python3 FormatClassifier.py $CLASSIFIER_NAME $WORKDIR/data $OUTPUT_PATH $LABEL_S
 
 ## COMMENT create things to be predicted
 PROTEIN_NAME=$WORKDIR/data/train/fold_1/ProtAnnotTypeData/test-$onto-input.tsv
-LABEL_COMPLETE=$WORKDIR/dataExpandGoSet/train/deepgo.$onto.csv
+LABEL_COMPLETE=$WORKDIR/data/train/deepgo.$onto.csv
 python3 FormatTarget.py $WORKDIR/data $OUTPUT_PATH $LABEL_SEEN $LABEL_COMPLETE $PROTEIN_NAME $ONTO
 

@@ -14,7 +14,7 @@ ONTO='molecular_function'
 onto='mf' ## need because we use short name
 OUTPUT_PATH=$WORKDIR'/data/PSLdata/'$ONTO
 LABEL_SEEN=$WORKDIR/data/train/deepgo.$onto.csv
-LABEL_COMPLETE=$WORKDIR/dataExpandGoSet/train/deepgo.$onto.csv
+LABEL_COMPLETE=$WORKDIR/data/train/deepgo.$onto.csv
 
 python3 FormatLabel.py $WORKDIR/data $OUTPUT_PATH $LABEL_SEEN $LABEL_COMPLETE $ONTO
 
