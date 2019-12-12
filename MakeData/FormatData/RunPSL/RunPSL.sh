@@ -19,3 +19,4 @@ java -jar psl-cli-2.1.0.jar --learn --model rule.psl --data input.data
 ## inference
 java -jar psl-cli-2.1.0.jar --infer --model rule-learned.psl --data input.data --output Prediction
 
+java -jar psl-cli-2.1.0.jar --infer --model preference-prediction.psl --data preference-prediction-learn.data --output Prediction
