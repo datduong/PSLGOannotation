@@ -4,7 +4,7 @@
 . /u/local/Modules/default/init/modules.sh
 module load java
 
-cd /u/scratch/d/datduong/deepgo/data/PSLdata/molecular_function
+cd /u/scratch/d/datduong/deepgo/data/PSLdata/biological_process #cellular_component ## COMMENT change
 scp /u/scratch/d/datduong/PSLGOannotation/MakeData/ExampleCode/psl-cli-2.1.0.jar .
 scp /u/scratch/d/datduong/PSLGOannotation/MakeData/FormatData/RunPSL/input.data .
 scp /u/scratch/d/datduong/PSLGOannotation/MakeData/FormatData/RunPSL/rule.psl .

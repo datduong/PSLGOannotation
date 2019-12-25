@@ -10,7 +10,7 @@ for onto in mf cc bp ; do
 done
 
 
-## COMMENT get classifier
+#### get classifier
 #!/bin/bash
 . /u/local/Modules/default/init/modules.sh
 module load python/3.7.2
@@ -19,8 +19,8 @@ cd /u/scratch/d/datduong/PSLGOannotation/MakeData/FormatData/Classifier
 WORKDIR='/u/scratch/d/datduong/deepgo'
 OUTPUT_PATH=$WORKDIR'/data/PSLdata'
 mkdir $OUTPUT_PATH
-ONTO='molecular_function'
-onto='mf' ## need because we use short name
+ONTO='biological_process' #'molecular_function' ## COMMENT
+onto='bp' ## need because we use short name
 OUTPUT_PATH=$WORKDIR'/data/PSLdata/'$ONTO
 LABEL_SEEN=$WORKDIR/data/train/deepgo.$onto.csv
 
